@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world
+  namespace: hello
+  labels:
+    app: hello-world
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-world
+        image: your-dockerhub-username/hello-argo:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: LOG_NOISE
+          value: "true"
+        - name: LOG_INTERVAL_MS
+          value: "2000"
+        - name: PORT
+          value: "3000"
+        # JSON logs go to stdout — Datadog will ingest automatically
