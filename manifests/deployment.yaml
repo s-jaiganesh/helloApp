@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: your-dockerhub-username/hello-argo:latest
+        image: jaiganeshinfotech/hello:latest
         ports:
         - containerPort: 3000
         env:
