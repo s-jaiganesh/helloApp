@@ -3,28 +3,22 @@ kind: Deployment
 metadata:
   name: hello-world
   namespace: hello
-  labels:
-    app: hello-world
-    version: v1
+  labels: { app: hello-world, version: v1 }
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: hello-world
+    matchLabels: { app: hello-world, version: v1 }
   template:
     metadata:
+      labels: { app: hello-world, version: v1 }
       annotations:
         sidecar.istio.io/inject: "true"          # explicit opt-in (optional, but fine)
         mesh.redeploy.ts: "2025-11-06T23:45:00Z"
-      labels:
-        app: hello-world
-        version: v1
     spec:
       containers:
       - name: hello-world
         image: jaiganeshinfotech/hello:latest
-        ports:
-        - containerPort: 3000
+        ports: [{ containerPort: 3000 }]
         env:
         - name: LOG_NOISE
           value: "true"
@@ -32,4 +26,3 @@ spec:
           value: "2000"
         - name: PORT
           value: "3000"
-        # JSON logs go to stdout — Datadog will ingest automatically
