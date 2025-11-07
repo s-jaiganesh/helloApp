@@ -5,6 +5,7 @@ metadata:
   namespace: hello
   labels:
     app: hello-world
+    version: v1
 spec:
   replicas: 1
   selector:
@@ -17,6 +18,7 @@ spec:
         mesh.redeploy.ts: "2025-11-06T23:45:00Z"
       labels:
         app: hello-world
+        version: v1
     spec:
       containers:
       - name: hello-world
