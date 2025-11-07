@@ -12,6 +12,9 @@ spec:
       app: hello-world
   template:
     metadata:
+      annotations:
+        sidecar.istio.io/inject: "true"          # explicit opt-in (optional, but fine)
+        mesh.redeploy.ts: "2025-11-06T23:45:00Z"
       labels:
         app: hello-world
     spec:
